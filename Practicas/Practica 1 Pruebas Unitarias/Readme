@@ -1,0 +1,44 @@
+Práctica 1 Pruebas Unitarias
+
+Muñoz Barón Luis Miguel
+
+
+1. Análisis de verificación y reparación del código inicial:
+
+La práctica plantea la implementación de las Pruebas
+definidas en la biblioteca QuickCheck de Haskell.
+
+Las pruebas son aplicadas al funcionamiento esperado
+de un interprete de evaluación estilo "Big Step".
+Para éste fin se definen las pruebas unitarias que 
+generan diferentes valores para construir expresiones
+en nuestro interprete y así probar diferentes 
+propiedades sobre éste.
+
+2. Modificación del código:
+
+El interprete definido no es robusto en el sentido
+de que puede aceptar la evaluación de expresiones
+mal formadas que se pueden evaluar a un valor.
+Para darle la vuelta a ésto se extendió la función
+eval por safe_eval la cuál es capáz de regresar 
+un valor si la evaluación es exitosa o regresar
+un parámetro que nos permita direccionar la ejecución
+del programa sin que ocurra un erro en tiempo de ejecución.
+
+Es por esto que se introducie el tipo Maybe Exp para el
+manejo de "Excepciones" en expresiones no deseadas.
+
+La correctez de este rubro es testeada con las pruebas: 
+
+prop_ill_sum_right b n = safe_eval(Plus (Boole b) (Num n))  == Nothing  ==> True
+prop_ill_sum_left n b = safe_eval(Plus (Num n) (Boole b)) == Nothing ==> True
+prop_ill_gt_right b n = safe_eval(Gt (Boole b) (Num n)) == Nothing ==> True
+prop_ill_gt_left b n =safe_eval(Gt (Num n) (Boole b)) == Nothing ==> True
+
+3._ Referencias:
+https://books.google.com.mx/books?id=NOX2hOaFv_oC&pg=PA8&lpg=PA8&dq=where+is+quickCheck+software+applied&source=bl&ots=T0jq0B_v6D&sig=ACfU3U09eMO2-EWr_fCL3OR7XtGn6F7kVA&hl=es&sa=X&ved=2ahUKEwimq9HyisXxAhVzk2oFHSYFBYYQ6AEwDHoECBgQAw#v=onepage&q=where%20is%20quickCheck%20software%20applied&f=false
+https://en.wikipedia.org/wiki/QuickCheck
+https://link.springer.com/chapter/10.1007/978-3-642-17685-2_6
+https://hackage.haskell.org/package/cabal-test-quickcheck
+
