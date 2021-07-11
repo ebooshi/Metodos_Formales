@@ -86,7 +86,11 @@ safe_eval (Mul e1 e2) = let e1' = safe_eval e1
                         (_) -> Nothing
 safe_eval (Gt e1 e2) = let e1' = safe_eval e1
                            e2' = safe_eval e2 in
+<<<<<<< HEAD
                        case (e1',e2') of 
+=======
+                      case (e1',e2') of 
+>>>>>>> 977b40983c3f2df0d2e61b493271a8dfa7ce16cb
                         (Just (Num n), Just (Num m)) -> Just (Boole (n > m))
                         (Just (Var s), Just (Var t)) -> Just (Gt (Var s) (Var t))
                         (Just (Var s), Just (Num t)) -> Just (Gt (Var s) (Num t))
