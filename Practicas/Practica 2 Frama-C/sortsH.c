@@ -1,5 +1,10 @@
  #include <stdio.h>
 
+
+/*@ requires \valid(x) && \valid(y);
+    ensures \let oldX = \old(*x) ; 
+ 	\let oldY = \old(*y) ; *x == oldY && *y == oldX;
+*/
 void swap(int *xp, int *yp)
 {
     int temp = *xp;
@@ -7,7 +12,10 @@ void swap(int *xp, int *yp)
     *yp = temp;
 }
  
-
+/*
+*   @requiares \valid(arr+(0..n-1)), n >= 0;
+*   @ensures \forall integer i; 1 <= i <= n-1 => \at(arr[i],Here) <= \at(arr[i+1],Here);
+*/
 void selectionSort(int arr[], int n)
 {
 	int i, j, min_idx;
