@@ -24,7 +24,7 @@ void selectionSort(int arr[], int n)
 	for (i = 0; i < n-1; i++)
 	{
         /*
-         * @loop invariant \forall integer x; j <= x < i => min_idx <= \at(arr[x],Here)
+         * @loop invariant \forall integer x; i <= x <= j => min_idx <= \at(arr[x],Here)
          */        
 		min_idx = i;
 		for (j = i+1; j < n; j++){
